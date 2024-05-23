@@ -24,5 +24,36 @@ export const resolvers = {
 
             return article;
         }
+    },
+
+    Mutation: {
+        createArticle: async (_, argument) => {
+            const { article } = argument;
+
+            const record = new Article(article);
+            await record.save();
+
+            return record;
+        }
     }
 };
+
+
+// mutation {
+//     createArticle(article: {
+//       title: "Bai viet ...",
+//       avatar: "link...",
+//       description: "Mo ta ..."
+//     }) {
+//       title,
+//       description
+//     }
+//   }
+
+// query {
+//     getArticle(id: "65468fbb834f8b56a156e571") {
+//       id,
+//       title,
+//       description
+//     }
+//   }
