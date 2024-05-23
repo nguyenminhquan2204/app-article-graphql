@@ -34,6 +34,19 @@ export const resolvers = {
             await record.save();
 
             return record;
+        },
+
+        deleteArticle: async (_, argument) => {
+            const { id } = argument;
+
+            await Article.updateOne({
+                _id: id
+            }, {
+                deleted: true,
+                deletedAt: new Date()
+            });
+
+            return "Đã xóa thành công!";
         }
     }
 };
