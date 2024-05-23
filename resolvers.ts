@@ -47,6 +47,21 @@ export const resolvers = {
             });
 
             return "Đã xóa thành công!";
+        },
+
+        updateArticle: async (_, argument) => {
+            const { id, article } = argument;
+
+            await Article.updateOne({
+                _id: id,
+                deleted: false
+            }, article);
+
+            const record = await Article.findOne({
+                _id: id
+            });
+
+            return record;
         }
     }
 };
