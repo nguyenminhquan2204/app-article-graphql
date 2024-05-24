@@ -1,7 +1,7 @@
-import Article from "./models/article.model";
-import Category from "./models/category.model";
+import Article from "../models/article.model";
+import Category from "../models/category.model";
 
-export const resolvers = {
+export const resolversArticle = {
     Query: {
         getListArticle: async () => {
             const articles = await Article.find({
@@ -20,25 +20,6 @@ export const resolvers = {
             });
 
             return article;
-        },
-
-        getListCategory: async () => {
-            const categorys = await Category.find({
-                deleted: false
-            });
-
-            return categorys;
-        },
-
-        getCategory: async (_, argument) => {
-            const { id } = argument;
-
-            const category = await Category.findOne({
-                deleted: false,
-                _id: id
-            });
-
-            return category;
         },
     },
 
@@ -77,7 +58,6 @@ export const resolvers = {
 
             return "Đã xóa thành công!";
         },
-
         updateArticle: async (_, argument) => {
             const { id, article } = argument;
 
@@ -91,41 +71,6 @@ export const resolvers = {
             });
 
             return record;
-        },
-
-        createCategory: async (_, argument) => {
-            const { category } = argument;
-
-            const record = new Category(category);
-            await record.save();
-
-            return record;
-        },
-        updateCategory: async (_, argument) => {
-            const { id, category } = argument;
-
-            await Category.updateOne({
-                _id: id,
-                deleted: false
-            }, category);
-
-            const record = await Category.findOne({
-                _id: id
-            });
-
-            return record;
-        },
-        deleteCategory: async (_, argument) => {
-            const { id } = argument;
-
-            await Category.updateOne({
-                _id: id
-            }, {
-                deleted: true,
-                deletedAt: new Date()
-            });
-
-            return "Đã xóa thành công!";
         },
     }
 };
