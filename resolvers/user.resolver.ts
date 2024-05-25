@@ -4,11 +4,13 @@ import md5 from "md5";
 
 export const resolversUser = {
     Query: {
-        getUser: async (_, argument) => {
-            const { id } = argument;
+        getUser: async (_, argument, context) => {
+            // console.log(context["user"]);
 
+            // const { id } = argument;
+            
             const infoUser = await User.findOne({
-                _id: id,
+                token: context["user"].token,
                 deleted: false
             });
 
@@ -28,7 +30,7 @@ export const resolversUser = {
                 };
             }
         },
-        
+
     },
 
     Mutation: {
