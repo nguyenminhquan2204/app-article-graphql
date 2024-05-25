@@ -36,6 +36,32 @@ const startServer = async () => {
 startServer();
 
 
+// Cau lenh graph
+// query(
+//     $sortKey: String,
+//     $sortValue: String,
+//     $currentPage: Int,
+//     $limitItems: Int,
+//     $filterKey: String,
+//     $filterValue: String,
+//     $keyword: String
+//   ) {
+//     getListArticle(
+//       sortKey: $sortKey,
+//       sortValue: $sortValue,
+//       currentPage: $currentPage,
+//       limitItems: $limitItems,
+//       filterKey: $filterKey,
+//       filterValue: $filterValue,
+//       keyword: $keyword
+//      ) {
+//       id
+//       title
+//       avatar
+//       description
+//     }
+//   }
+// end
 
 
 // // Rest API
